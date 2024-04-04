@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use App\Models\Business;
+use App\Models\User;
+
 class ProfileController extends Controller
 {
     /**
@@ -56,5 +59,28 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Add business data to the user's profile.
+     */
+    public function addBusinessData(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'business_name' => ['required', 'string', 'max:255'],
+            'street' => ['required', 'string', 'max:255'],
+            'house_number' => ['required', 'string', 'max:255'],
+            'postal_code' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:255'],
+            'kvk_number' => ['required', 'string', 'max:255'],
+        ]);
+
+        $business = new Business($request->all());
+        $business->user()->associate($request->user());
+        $business->save();
+
+        return Redirect::route('profile.edit')->with('status', 'business-data-added');
     }
 }
