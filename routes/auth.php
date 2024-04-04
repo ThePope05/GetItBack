@@ -58,9 +58,21 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-    Route::post('profile/business/add', [ProfileController::class, 'addBusinessData'])
-        ->name('addBusinessData');
+    Route::post('profile/business/add', [ProfileController::class, 'addBusiness'])
+        ->name('addBusiness');
 
-    Route::post('profile/business/update', [ProfileController::class, 'updateBusinessData'])
-        ->name('updateBusinessData');
+    Route::post('profile/business/update', [ProfileController::class, 'updateBusiness'])
+        ->name('updateBusiness');
+
+    Route::delete('profile/business/destroy', [ProfileController::class, 'destroyBusiness'])
+        ->name('profile.destroyBusiness');
+
+    Route::post('profile/addresses/add', [ProfileController::class, 'addAddress'])
+        ->name('addAddress');
+
+    Route::post('profile/addresses/update/{address}', [ProfileController::class, 'updateAddress'])
+        ->name('updateAddress');
+
+    Route::delete('profile/addresses/destroy/{address}', [ProfileController::class, 'destroyAddress'])
+        ->name('destroyAddress');
 });
