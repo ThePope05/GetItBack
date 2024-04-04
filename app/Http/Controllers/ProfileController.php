@@ -83,4 +83,37 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'business-data-added');
     }
+
+    public function destroyBusinessData(Request $request): RedirectResponse
+    {
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
+
+        $user = $request->user();
+
+        $user->business()->delete();
+
+        return Redirect::route('profile.edit')->with('status', 'business-data-deleted');
+    }
+
+    public function updateBusinessData(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'business_name' => ['required', 'string', 'max:255'],
+            'street' => ['required', 'string', 'max:255'],
+            'house_number' => ['required', 'string', 'max:255'],
+            'postal_code' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:255'],
+            'kvk_number' => ['required', 'string', 'max:255'],
+        ]);
+
+        $business = $request->user()->business()->first();
+        $business->fill($request->all());
+        $business->save();
+
+        return Redirect::route('profile.edit')->with('status', 'business-data-updated');
+    }
 }
