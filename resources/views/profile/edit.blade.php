@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
+        {{ __('Profile') }}
     </x-slot>
 
     <div class="py-12">
@@ -12,7 +10,7 @@
                 <hr class="my-6 border-gray-700">
                 @include('profile.partials.update-password-form')
                 <hr class="my-6 border-gray-700">
-                @include('profile.partials.delete-user-form')
+                @include('profile.partials.danger-zone-form')
             </div>
 
             <div class="p-4 sm:p-8 bg-slate-800 shadow-xl sm:rounded-lg">
