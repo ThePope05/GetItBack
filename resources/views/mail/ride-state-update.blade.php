@@ -1,6 +1,6 @@
 <x-mail-layout>
     <x-slot name="header">
-        Hey {{ $ride->user()->name }}! an update on your ride!
+        Hey {{ $ride->user->name }}! an update on your ride!
     </x-slot>
 
     <div class="py-12">
