@@ -45,7 +45,7 @@
         </form>
     </x-modal>
     <x-modal name="confirm-business-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroyBusinessData') }}" class="p-6">
+        <form method="post" action="{{ route('profile.destroyBusiness') }}" class="p-6">
             @csrf
             @method('delete')
 
