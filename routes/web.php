@@ -22,9 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/rides/create', [RideController::class, 'create'])->name('rides.create');
     Route::get('/rides', [RideController::class, 'index'])->name('rides.index');
     Route::post('/rides', [RideController::class, 'store'])->name('rides.store');
-    Route::get('/rides/{ride}', [RideController::class, 'show'])->name('rides.show');
-    Route::get('/rides/{ride}/edit', [RideController::class, 'edit'])->name('rides.edit');
-    Route::patch('/rides/{ride}', [RideController::class, 'update'])->name('rides.update');
     Route::delete('/rides/{ride}', [RideController::class, 'destroy'])->name('rides.destroy');
 });
 

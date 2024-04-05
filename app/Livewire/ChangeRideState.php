@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Ride;
+use App\Mail\RideStateUpdate;
+use Illuminate\Support\Facades\Mail;
 
 class ChangeRideState extends Component
 {
@@ -18,5 +20,7 @@ class ChangeRideState extends Component
     public function setState(string $state)
     {
         $this->ride->update(['status' => $state]);
+
+        Mail::to($this->ride->user)->send(new RideStateUpdate($this->ride));
     }
 }

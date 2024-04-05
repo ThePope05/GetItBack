@@ -11,10 +11,14 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-slate-700">
+
         <!-- Page Heading -->
         @if (isset($header))
         <header class="bg-slate-800 shadow-2xl">
@@ -27,7 +31,7 @@
         @endif
 
         <!-- Page Content -->
-        <main class="flex flex-col items-center justify-center">
+        <main>
             {{ $slot }}
         </main>
     </div>
