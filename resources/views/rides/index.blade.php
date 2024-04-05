@@ -43,6 +43,15 @@
                         Requested by: {{ $ride->user->name }}
                     </p>
                     @endif
+                    @if ($ride->user == auth()->user() || auth()->user()->role->name === 'admin')
+                    <form action="{{ route('rides.destroy', $ride) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-500 hover:text-red-400 transition-colors mt-4">
+                            Delete
+                        </button>
+                    </form>
+                    @endif
                 </div>
             </div>
             @endforeach

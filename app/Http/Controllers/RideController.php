@@ -39,9 +39,9 @@ class RideController extends Controller
         return redirect()->route('rides.index')->with('status', 'Ride created successfully');
     }
 
-    public function show($ride)
+    public function destroy(Ride $ride)
     {
-        $ride = auth()->user()->rides()->findOrFail($ride);
-        return view('rides.show', compact('ride'));
+        $ride->delete();
+        return redirect()->route('rides.index')->with('status', 'Ride deleted successfully');
     }
 }
