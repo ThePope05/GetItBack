@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('origin_id')->constrained('addresses');
             $table->foreignId('destination_id')->constrained('addresses');
+            $table->decimal('distance', 8, 1);
             $table->string('status')->default('pending');
-            $table->timestamp('completed_time');
+            $table->timestamp('completed_time')->nullable();
             $table->timestamps();
         });
     }
